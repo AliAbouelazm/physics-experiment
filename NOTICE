@@ -1,0 +1,11 @@
+Physics Experiment
+Copyright 2026 Ali Abouelazm
+
+Includes public PushT task geometry and actuator conventions adapted from gym-pusht.
+Copyright 2024 The Hugging Face team. All rights reserved.
+gym-pusht is licensed under Apache License 2.0; its notice and full license are retained in licenses/gym-pusht-LICENSE.
+Project-specific geometry, control diagnostics, learning, evaluation and recorded-view code were developed for this experiment.
+See THIRD_PARTY_NOTICES.md for dependency and asset provenance.
+
+No additional license is granted for original project work. The author retains those rights.
+Third-party material and portions derived from gym-pusht retain their applicable upstream license coverage and notices.

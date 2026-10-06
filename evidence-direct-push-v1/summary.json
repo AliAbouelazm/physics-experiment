@@ -1,0 +1,13 @@
+{
+  "seconds": 30.708026813998003,
+  "peak_rss_bytes": 341831680,
+  "controls": 69696,
+  "resets": 432,
+  "physics_substeps": 697392,
+  "physical_cells": 32,
+  "target_contexts": 96,
+  "trajectories": 288,
+  "training_updates": 0,
+  "qualified": false,
+  "manifest_sha256": "a6306f4e7846428451709a1432a384d57011f4b586bfcf432b9c1f60ced3ba17"
+}

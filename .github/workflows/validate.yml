@@ -1,0 +1,38 @@
+name: Validate recorded experiment
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: recorded-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+jobs:
+  cpu:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      SDL_VIDEODRIVER: dummy
+      PYGAME_HIDE_SUPPORT_PROMPT: '1'
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.13.5'
+      - name: Install CPU runtime
+        run: |
+          python -m pip install --index-url https://download.pytorch.org/whl/cpu torch==2.11.0
+          python -m pip install --index-url https://pypi.org/simple -r requirements-pusht-lock.txt
+      - name: Verify recorded evidence and tests
+        run: |
+          python scripts/verify_public.py
+          python -m scripts.validate_cached_adaptation
+          python -m unittest discover -s tests_direct_push
+          python -m unittest discover -s tests_cached_adaptation
+          python -m unittest discover -s tests_experiment
